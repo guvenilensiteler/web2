@@ -15,6 +15,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/new.css">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z26NSJMLBN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z26NSJMLBN');
+    </script>
+
 </head>
 <style>
     .row.strip h1 {
@@ -322,6 +332,14 @@
             </div>
         </div>
         -->
+        <script>
+            function click_say(e) {
+                gtag('event', 'click', {
+                    'event_category': 'button',
+                    'event_label': e.getAttribute('site')
+                });
+            }
+        </script>
         <div class="row diamond" style="display: none"  :class="['cat' + vip.id, 'banner' + diamond.grid]">
             <div class="col" v-if="_.find(client.sites, ['site', site.site])" v-for="(site,siteKey) in _.orderBy(diamond.sites, [item => parseInt(item.sort)], ['asc'])" >
                 <a target="_blank"  :href="_.find(client.sites, ['site', site.site]).url" class="item" v-bind:style="{
@@ -357,7 +375,7 @@
         </div>
         <div class="row normal"  :class="['cat' + list.id, 'banner' + list.grid]">
             <div class="col" v-if="_.find(client.sites, ['site', site.site])" v-for="(site,siteKey) in _.orderBy(list.sites, [item => parseInt(item.sort)], ['asc'])">
-                <a target="_blank"  :href="_.find(client.sites, ['site', site.site]).url" class="item" :style="'--site-color: ' + _.find(client.sites, ['site', site.site]).color"
+                <a target="_blank" onclick="click_say(this)" :site="_.find(client.sites, ['site', site.site]).site"  :href="_.find(client.sites, ['site', site.site]).url" class="item" :style="'--site-color: ' + _.find(client.sites, ['site', site.site]).color"
                    :class="['betgram','milbet'].includes(_.find(client.sites, ['site', site.site]).site) ? _.find(client.sites, ['site', site.site]).site+'-bg-special' : ''">
                     <div class="top">
                         <img :src="client.cdn_url + _.find(client.sites, ['site', site.site]).site + '.png'" width="150">
