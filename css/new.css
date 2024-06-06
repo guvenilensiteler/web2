@@ -855,8 +855,10 @@ body{
   }
   #app-v-page.mobile .item .button{
     width: 90px !important;
+    /*
     position: absolute;
     right: 16px;
+    */
   }
   #app-v-page.mobile .vip.king .item .button{
     float: right !important;
@@ -1149,4 +1151,22 @@ img[src*="favori-site"] {
 .slide-fwd-center {
   -webkit-animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
   animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
+}
+
+.promo-code-special {
+  font-family: 'Montserrat';
+  text-transform: lowercase;
+  font-weight: 400;
+}
+
+.betgram-bg-special {
+  background: url("../betgram-bg.png") !important;
+  background-size: contain !important;
+  background-repeat: round !important;
+}
+
+.milbet-bg-special {
+  background: url("../milbet-bg.png") !important;
+  background-size: contain !important;
+  background-repeat: round !important;
 }

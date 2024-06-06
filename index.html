@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/new.css">
 
 </head>
 <style>
@@ -301,6 +302,7 @@
                 </a>
             </div>
         </div>
+        <!--
         <div class="row vip"  :class="['cat' + vip.id, 'banner' + vip.grid]">
             <div class="col" v-if="_.find(client.sites, ['site', site.site])" v-for="(site,siteKey) in _.orderBy(vip.sites, [item => parseInt(item.sort)], ['asc'])">
                 <a target="_blank"  :href="_.find(client.sites, ['site', site.site]).url" class="item" :style="'--site-color: ' + _.find(client.sites, ['site', site.site]).color">
@@ -319,7 +321,8 @@
                 </a>
             </div>
         </div>
-        <div class="row diamond"  :class="['cat' + vip.id, 'banner' + diamond.grid]">
+        -->
+        <div class="row diamond" style="display: none"  :class="['cat' + vip.id, 'banner' + diamond.grid]">
             <div class="col" v-if="_.find(client.sites, ['site', site.site])" v-for="(site,siteKey) in _.orderBy(diamond.sites, [item => parseInt(item.sort)], ['asc'])" >
                 <a target="_blank"  :href="_.find(client.sites, ['site', site.site]).url" class="item" v-bind:style="{
     '--site-color': _.find(client.sites, ['site', site.site]).color,
@@ -352,20 +355,27 @@
                 </a>
             </div>
         </div>
-        <!--
         <div class="row normal"  :class="['cat' + list.id, 'banner' + list.grid]">
             <div class="col" v-if="_.find(client.sites, ['site', site.site])" v-for="(site,siteKey) in _.orderBy(list.sites, [item => parseInt(item.sort)], ['asc'])">
-                <a target="_blank"  :href="_.find(client.sites, ['site', site.site]).url" class="item" :style="'--site-color: ' + _.find(client.sites, ['site', site.site]).color">
+                <a target="_blank"  :href="_.find(client.sites, ['site', site.site]).url" class="item" :style="'--site-color: ' + _.find(client.sites, ['site', site.site]).color"
+                   :class="['betgram','milbet'].includes(_.find(client.sites, ['site', site.site]).site) ? _.find(client.sites, ['site', site.site]).site+'-bg-special' : ''">
                     <div class="top">
                         <img :src="client.cdn_url + _.find(client.sites, ['site', site.site]).site + '.png'" width="150">
                     </div>
                     <div class="text">
-                        <span>{{ _.find(client.sites, ['site', site.site]).desc[0] }}</span>
+                        <span v-if="!_.find(client.sites, ['site', site.site]).promo_code">{{ _.find(client.sites, ['site', site.site]).desc[0] }}</span>
+                        <span class="font-size-x-small" v-if="_.find(client.sites, ['site', site.site]).promo_code">Promo Code:</span>
+                        <span :class="['betgram','milbet'].includes(_.find(client.sites, ['site', site.site]).site) ? '' : 'promo-code-special'">
+                            {{_.find(client.sites, ['site', site.site]).promo_code}}
+                        </span>
                     </div>
-                    <div class="button">GİRİŞ YAP</div>
+                    <div class="button" v-bind:style="{fontSize: (_.find(client.sites, ['site', site.site]).miktar.indexOf('₺') > -1) ? '16px' : '13px'}">
+                        {{_.find(client.sites, ['site', site.site]).miktar}}
+                    </div>
                 </a>
             </div>
         </div>
+        <!--
         <div v-if="bottomFix">
             <div class="bottom-fixed" v-show="bottomShow" v-if="bottomActive == bottomKey" :style="'border-color: ' + _.find(client.sites, ['site', bottom.site]).color" v-for="(bottom, bottomKey) in _.orderBy(bottomFix.sites, [bottom => parseInt(bottom.sort)], ['asc'])" :key="bottomKey" >
                 <div class="button">
